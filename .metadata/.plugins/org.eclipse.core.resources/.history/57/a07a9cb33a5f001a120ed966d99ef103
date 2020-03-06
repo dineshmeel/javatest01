@@ -1,0 +1,5 @@
+package a.b.c.database;
+
+public class MariaDatabaseManager {
+
+}

@@ -1,0 +1,27 @@
+package a.b.c.startup;
+
+public class Launcher {
+	private static volatile Server server;
+
+	public static Server server() {
+		return server;
+	}
+
+	public static final void launch() {
+		try {
+			// initialize();
+			server = new JettyMobileRestServer(SystemConfig.mobileRestApiPort());
+			server.start();
+		} catch (Exception e) {
+			if (logger == null) {
+				e.printStackTrace();
+			}
+			logger.error("Error launching Application", e);
+			System.exit(-1);
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		launch();
+	}
+}

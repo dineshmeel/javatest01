@@ -1,0 +1,17 @@
+package a.b.c.startup;
+
+import javax.annotation.Resource;
+
+/**
+ * 
+ * @author harman.ram
+ *
+ */
+public class JerseyResourceConfig extends ResourceConfig {
+
+	public JerseyResourceConfig() {
+		packages(Resource.class.getPackage().getName());
+		register(JacksonFeature.class);
+		register(MultiPartFeature.class);
+	}
+}

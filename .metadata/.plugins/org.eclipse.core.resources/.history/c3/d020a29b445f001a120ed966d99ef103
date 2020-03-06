@@ -1,0 +1,74 @@
+package a.b.c.startup;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
+@Path("testing")
+public class MyResource {
+
+	@GET
+	@Path("phase1")
+	public String letsTest() {
+		return "Hello";
+	}
+
+	@GET
+	@Path("getEmps")
+	public String getEmps() {
+		Statement stmt;
+		String result = "";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mypro", "root", "root");
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from emp");
+			while (rs.next()) {
+				result = result + "Id:" + rs.getString(1) + " Name:" + rs.getString(2) + " Age:" + rs.getString(3)
+						+ "\n";
+				System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+			}
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			result = "SQLException";
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			result = "ClassNotFoundException";
+		}
+		return result;
+	}
+
+	@POST
+	@Path("addEmps")
+	public int addEmps() {
+		int result;
+		try {
+			String SQL = "INSERT INTO emps(id,name,age) " + "VALUES(?,?,?)";
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mypro", "root", "root");
+			PreparedStatement pstmt = connection.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, 1);
+			pstmt.setString(2, "someone");
+			pstmt.setInt(3, 23);
+			result = pstmt.executeUpdate();
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = -1;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			result = -2;
+		}
+		return result;
+	}
+}

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: mypro
+Implementation-Version: 1.0.0.1
+Main-Class: com.dk.niku.startup.Launcher
+Built-JDK: 1.8.0_171
+Built-By: dinesh.meel
+Built-Date: Fri Mar 06 06:59:27 IST 2020
+

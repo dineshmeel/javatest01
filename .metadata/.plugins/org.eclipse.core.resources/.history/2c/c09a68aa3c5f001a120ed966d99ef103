@@ -1,0 +1,15 @@
+package a.b.c.startup;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+@Path("testing")
+public class MyResource {
+
+	@GET
+	@Path("phase1")
+	public String letsTest() {
+		return "Hello";
+	}
+
+}

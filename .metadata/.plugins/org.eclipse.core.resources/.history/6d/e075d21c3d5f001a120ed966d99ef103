@@ -1,0 +1,34 @@
+package a.b.c.startup;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+import a.b.c.database.MariaDatabaseManager;
+
+@Path("testing")
+public class MyResource {
+
+	@GET
+	@Path("phase1")
+	public String letsTest() {
+		return "Hello";
+	}
+
+	@GET
+	@Path("phase2")
+	public String letsTest2() {
+		
+		Statement stmt=MariaDatabaseManager.getConnection().createStatement();  
+		ResultSet rs=stmt.executeQuery("select * from emp");  
+		while(rs.next())  
+		System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+		con.close();  
+		}catch(
+
+	Exception e){ System.out.println(e);}
+}}return"Hello";}
+
+}

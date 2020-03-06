@@ -1,0 +1,25 @@
+package a.b.c.startup;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+
+
+/**
+ * @author harman.ram
+ *
+ */
+@Path("npsmediation")
+public class NPSMediationResource {
+
+	@GET
+	@Path("check-account-status")
+	public Response checkNPSAccountStatus(@Context HttpServletRequest request, @FormParam("payload") String payload) {
+		return handleServerToServerRequest(request, payload, CheckNPSAccountStatusRequest.class,
+				CommunicationLinkType.KARVY);
+	}
+
+}

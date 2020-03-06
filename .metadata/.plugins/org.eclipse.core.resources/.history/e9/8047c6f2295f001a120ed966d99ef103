@@ -1,0 +1,7 @@
+package a.b.c.startup;
+
+public class Launcher {
+	// initialize database
+	//
+	private static volatile Runnable server = new JettyMobileRestServer("8080");
+}

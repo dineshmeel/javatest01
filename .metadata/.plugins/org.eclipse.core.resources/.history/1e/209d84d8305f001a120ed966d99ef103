@@ -1,0 +1,21 @@
+package a.b.c.startup;
+
+import javax.annotation.Resource;
+
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.server.ResourceConfig;
+
+/**
+ * 
+ * @author harman.ram
+ *
+ */
+public class JerseyResourceConfig extends ResourceConfig {
+
+	public JerseyResourceConfig() {
+		packages(Resource.class.getPackage().getName());
+		register(JacksonFeature.class);
+		register(MultiPartFeature.class);
+	}
+}

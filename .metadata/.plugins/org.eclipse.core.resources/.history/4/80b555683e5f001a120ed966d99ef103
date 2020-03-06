@@ -1,0 +1,25 @@
+package a.b.c.startup;
+
+import a.b.c.database.MariaDatabaseManager;
+
+public class Launcher {
+	private static volatile Server server;
+
+	public static Server server() {
+		return server;
+	}
+
+	public static final void launch() {
+		try {
+//			MariaDatabaseManager.initialize();
+			server = new JettyMobileRestServer(8080);
+			server.start();
+		} catch (Exception e) {
+			System.exit(-1);
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		launch();
+	}
+}

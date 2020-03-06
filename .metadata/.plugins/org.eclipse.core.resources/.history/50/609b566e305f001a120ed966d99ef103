@@ -1,0 +1,23 @@
+package a.b.c.startup;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+
+/**
+ * @author harman.ram
+ *
+ */
+@Path("testing")
+public class NPSMediationResource {
+
+	@GET
+	@Path("phase1")
+	public String letsTest(@Context HttpServletRequest request, @FormParam("payload") String payload) {
+		return "Hello";
+	}
+
+}

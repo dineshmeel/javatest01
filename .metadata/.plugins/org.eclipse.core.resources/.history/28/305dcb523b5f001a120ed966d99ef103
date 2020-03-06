@@ -1,0 +1,26 @@
+package a.b.c.database;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+public class MariaDatabaseManager {
+	public void initialize() {
+		try {
+			HikariConfig config = new HikariConfig();
+			String jdbcUrl = "jdbc:mysql://" + "localhost" + ":" + 8080 + "/" + "mypro";
+			config.setJdbcUrl(jdbcUrl);
+			config.setUsername(user);
+			config.setPassword(password);
+			config.setMaximumPoolSize(size);
+			// Optional Settings
+			/* 120 seconds is wait_timeout on our servers. */
+			config.setLeakDetectionThreshold(120 * 1000);
+			config.setIdleTimeout(30 * 1000);
+			config.addDataSourceProperty("cachePrepStmts", "true");
+			config.addDataSourceProperty("prepStmtCacheSize", "250");
+			config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+			dataSource = new HikariDataSource(config);
+		} catch (Exception e) {
+			throw new RuntimeException("FATAL: Error intializing Maria Database Manager: " + name(), e);
+		}
+	}
