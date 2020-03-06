@@ -42,6 +42,8 @@ sourceSets {
 		java {
 			srcDirs = []
 			srcDir 'src/main/java'
+			srcDir 'src/test/java'
+			srcDir 'src/main/resources'
 		}
 	}
 }
