@@ -74,6 +74,17 @@ task uberjar(type: Jar) {
 	zip64 true
 	with jar
 }
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',  
+        	'Implementation-Version': versionId,
+        	'Main-Class':mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
 // In this section you declare where to find the dependencies of your project
 repositories {
 	mavenCentral()
